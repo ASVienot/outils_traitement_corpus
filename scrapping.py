@@ -11,7 +11,11 @@ def ouverture_fichiers(fichier):
 
 def main(fichier:str): 
     soup = ouverture_fichiers(fichier)
-    
+
+#but trouver les balises contenant des liens 
+#ouvrir ses liens
+#ouvrir avec soup et recommencer à trouver les balises contenant des liens etc... 
+ 
 
 
 if __name__ == '__main__':
