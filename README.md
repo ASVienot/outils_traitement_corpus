@@ -72,3 +72,6 @@ Absente ce jour là, mais si j'ai a peu près compris:
 
 
 ### Script de scrapping 
+Bon ... c'est un début. 
+Je sais ce qu'il doit faire et j'ai quelques fonctions. 
+
