@@ -79,5 +79,14 @@ Bon ... c'est un début.
 
 ## Semaine 3 - Format Dataset
 ### Jupyter Notebook - TD_s3.ipynb
+Création du format Dataset pour hugging face ? 
 
+# Semaine 4 - Docker et que faire avec les données 
+## Représentations des données 
+Quelles mesures peuvent être utilisé pour ce projet ? 
 
+## Docker 
+Installation Réussi d'un docker dans le dossier ~/Documents/M1_TAL/outils
+Il s'appelle flamboyant_leaky et c'est une alpine ! 
+mdp : default password (Sinon je vais oublier c'est mon premier aussi)
+Du coup faut mettre le corpus dedans ? 
