@@ -2,7 +2,7 @@
 """ Scraping_code_lois
 Ce script prend l'url contenant les codes du droits français et extrait les liens des fichiers xml qu'elle contient. 
 Puis, elle crée un tableau contenant pour chaque article des différent codes, le num (arborescence suivant l'endroit d'ou vient l'article), le titre de l'article, son id, sa date de prise d'effet, le code dans lequel il est, son nom de modification et son body (texte de l'article).  
-Ce script necessite les librairies requests, lxml.html, BeautifulSoup de bs4 et csv. 
+Ce script necessite les librairies: requests, lxml.html, BeautifulSoup de bs4, collections et csv. 
 """
 
 
@@ -80,23 +80,23 @@ def get_lois(url_list, Loi):
     return liste_lois
 
 def main ():
-    url = "https://codes.droit.org/"
-    r = requests.get(url)
+    # url = "https://codes.droit.org/"
+    # r = requests.get(url)
 
-    root = lxml.html.fromstring(r.content)
-    balises_liens = root.xpath('//dd/a[3]') # trouver les balises contenant les liens
-    # la troisième balise a car les deux premières contiennent les liens pdf et rss
+    # root = lxml.html.fromstring(r.content)
+    # balises_liens = root.xpath('//dd/a[3]') # trouver les balises contenant les liens
+    # # la troisième balise a car les deux premières contiennent les liens pdf et rss
 
-    #url_list = ['https://codes.droit.org/payloads/Code%20de%20l%27action%20sociale%20et%20des%20familles.xml']
-    url_list = get_urls(balises_liens)
-    #print(len(url_list))
+    url_list = ['https://codes.droit.org/payloads/Code%20civil.xml', 'https://codes.droit.org/payloads/Code%20g%C3%A9n%C3%A9ral%20des%20imp%C3%B4ts.xml','https://codes.droit.org/payloads/Code%20de%20justice%20militaire%20%28nouveau%29.xml', 'https://codes.droit.org/payloads/Code%20des%20ports%20maritimes.xml', 'https://codes.droit.org/payloads/Code%20des%20postes%20et%20des%20communications%20%C3%A9lectroniques.xml', 'https://codes.droit.org/payloads/Code%20de%20la%20route.xml', 'https://codes.droit.org/payloads/Code%20du%20sport.xml', 'https://codes.droit.org/payloads/Code%20du%20travail.xml', 'https://codes.droit.org/payloads/Code%20de%20l%27action%20sociale%20et%20des%20familles.xml', 'https://codes.droit.org/payloads/Code%20de%20la%20sant%C3%A9%20publique.xml']    
+    #url_list = get_urls(balises_liens)
+    print(len(url_list))
     
     Loi = namedtuple('Loi', ['num', 'title', 'id', 'date', 'code', 'mod_title', 'body'])
     # mettre toutes les infos dans l'objet loi 
     liste_lois = get_lois(url_list, Loi)
 
     # Remplir un Fichier csv avec les informations données dans les objets Loi 
-    with open('../data/raw_complet.csv', 'w') as f:
+    with open('../data/raw_codes_10.csv', 'w') as f:
         writer = csv.writer(f)
         writer.writerow(Loi._fields)
         for loi in liste_lois:

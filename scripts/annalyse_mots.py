@@ -7,7 +7,6 @@ from collections import Counter
 nlp = spacy.load("fr_core_news_sm")
 
 
-# Function to find the most common words for each code
 def most_common_words_per_code(data):
     """ 
     Cette fonction prend le dataset des articles de lois et retourne une liste de dictionnaires contenant en clef le code et en valeur une liste de tuple des mots les plus courant dans ce code de loi. 
@@ -67,13 +66,13 @@ def hop_en_csv(code_mots):
     for code, mots in code_mots.items(): 
         for mot, count in mots: 
             rows.append({'code': code, 'mot': mot, 'freq': count})
-    with open("../data/freq_mots_code.csv", mode='w', newline ='') as fichier:
+    with open("../data/freq_mots_10.csv", mode='w', newline ='') as fichier:
         writer = csv.DictWriter(fichier, fieldnames=['code', 'mot', 'freq'])
         writer.writeheader()
         writer.writerows(rows)
 
 def main(): 
-    data = pd.read_csv("../data/codesocial_annot_mots.csv")
+    data = pd.read_csv("../data/annotation_10.csv")
     common_words_per_code = most_common_words_per_code(data)
     hop_en_csv(common_words_per_code)
     for code, common_words in common_words_per_code.items():
